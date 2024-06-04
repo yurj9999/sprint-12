@@ -52,7 +52,8 @@ func TestAddGetDelete(t *testing.T) {
 	require.Equal(t, parcel, stored)
 
 	// delete
-	store.Delete(parcel.Number)
+	err = store.Delete(parcel.Number)
+	require.NoError(t, err)
 
 	_, err = store.Get(parcel.Number)
 	require.Equal(t, sql.ErrNoRows, err)
