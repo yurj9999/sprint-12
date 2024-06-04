@@ -7,39 +7,13 @@ on:
       - 'v*.*.*'
 
 jobs:
-  #build:
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #  - uses: actions/checkout@v4
-  #  - uses: actions/setup-go@v5
-  #  - name: Build
-  #    run: go build -v ./...
-
   tests:
-    #needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-go@v5
     - name: Test
       run: go test -v ./...
-
-  #tests-race:
-  #  needs: build
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #  - uses: actions/checkout@v4
-  #  - uses: actions/setup-go@v5
-  #  - name: Test
-  #    run: go test -race -v ./...
-
-  #lint:
-  #  needs: [tests, tests-race]
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: actions/checkout@v4
-  #    - uses: actions/setup-go@v5
-  #    - uses: golangci/golangci-lint-action@v6
 
   deploy:
     name: Push Docker image to Docker Hub
@@ -72,4 +46,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }} 
-
