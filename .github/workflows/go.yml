@@ -3,6 +3,8 @@ name: Go
 on:
   push:
     branches: ["feature/yml"]
+    tags:
+      - 'v*.*.*'
 
 jobs:
   #build:
